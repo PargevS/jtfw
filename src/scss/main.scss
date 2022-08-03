@@ -1,0 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-transform: none;
+}
+
+#app {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: rgba(0, 99, 211, 0.5);
+}
