@@ -11,6 +11,22 @@ const formulateFileName = (ext) => {
   return isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
 };
 
+const jsLoaders = () => {
+  const loaders = [
+    {
+      loader: "babel-loader",
+      options: {
+        cacheCompression: false,
+        // presets: ["@babel/preset-env", "@babel/preset-typescript"],
+      },
+    },
+  ];
+
+  if (isDev) loaders.push("eslint-loader");
+
+  return loaders;
+};
+
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
@@ -52,13 +68,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            cacheCompression: false,
-            // presets: ["@babel/preset-env", "@babel/preset-typescript"],
-          },
-        },
+        use: jsLoaders(),
       },
       {
         test: /\.s[ac]ss$/i,
